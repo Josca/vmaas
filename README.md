@@ -1,3 +1,31 @@
+VMAAS
+reposcan - service pro stahovani dat z cdn - metadata o balicich
+/repos - init stahovani - zadata cestu url kde je adr "repodata"
+ - rpm repo - data
+ - jiná komponenta do db nezapisuje
+ - cron - každých 12h
+ - asi 1 mil baličku
+ - po sta
+ - stahuje info o cve z midrap
+/sync - stahne metadata do PostgreSQLdocker-compose up
+webapp - serviruje data z DB pomoci nakesovaneho objektu
+- pres websock dostava signal k preloadovani
+
+# ENGINE
+listener
+- pres kafku je ping, ze je zde novy upload archivu - 
+- stahne archiv z amazonu - s3, uloží do vlastni postgredb
+- pres kafku pingne evaluator
+evaluator
+- naparuje data z veemas s cve a ulozi do db
+vemassync
+- po reposcan syncu aktualizuje info o cve
+manager
+- API pro UI
+
+vulnerabilityUI - reacth
+
+
 [![Build Status](https://travis-ci.org/RedHatInsights/vmaas.svg?branch=master)](https://travis-ci.org/RedHatInsights/vmaas)
 [![codecov](https://codecov.io/gh/RedHatInsights/vmaas/branch/master/graph/badge.svg)](https://codecov.io/gh/RedHatInsights/vmaas)
 
